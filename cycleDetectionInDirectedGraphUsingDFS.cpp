@@ -2,15 +2,15 @@
 #include<list>
 
 bool checkCycleDFS(int node, unordered_map<int, bool> &visited, 
-				  unordered_map<int, bool> dfsVisit, unordered_map<int, list<int>> &adj,
-				  int parent) {
+				  unordered_map<int, bool> dfsVisit, unordered_map<int, list<int>> &adj
+				  ) {
 	
 	visited[node] = true;
 	dfsVisit[node] = true;
 	
 	for(auto i : adj[node]) {
 		if(!visited[i]) {
-			bool cycleDetected = checkCycleDFS(i, visited, dfsVisit, adj, node);
+			bool cycleDetected = checkCycleDFS(i, visited, dfsVisit, adj);
 			if(cycleDetected) {
 				return true;
 			}
@@ -41,7 +41,7 @@ int detectCycleInDirectedGraph(int n, vector < pair < int, int >> & edges) {
 	
 	for(int i = 1;i <= n;i++) {
 		if(!visited[i]) {
-			bool cycleFound = checkCycleDFS(i, visited, dfsVisit, adj, -1);
+			bool cycleFound = checkCycleDFS(i, visited, dfsVisit, adj);
 			if(cycleFound) {
 				return true;
 			}
